@@ -43,7 +43,11 @@ const gamesPaths = {
   [SportType.Soccer]: "/fixtures",
 }
 
+/**
+ * スポーツデータをフェッチするメソッド
+ */
 const fetchSportData = async (sport, path, params) => {
+  // APIをコールする
   const response = await Functions.makeHttpRequest({
     url: `${baseUrls[sport]}${path}?${params}`,
     headers: { "x-apisports-key": secrets.apiKey },
@@ -60,19 +64,30 @@ const fetchSportData = async (sport, path, params) => {
   return response.data.response[0]
 }
 
+/**
+ * 試合結果を取得する
+ * @returns 
+ */
 const getGameResult = async (sport, gameId) => {
+  // fetchSportData メソッドを呼び出す。
   const data = await fetchSportData(sport, gamesPaths[sport], `id=${gameId}`)
+  // getGameStatus メソッドを呼び出す。
   const status = getGameStatus(sport, data)
+
   if (status == "POST" || status == "CANC" || status == "INTR" || status == "ABD") {
     return Functions.encodeUint256(Result.None)
   }
   if (status != "FT") {
     throw new Error("Game not finished")
   }
+  // 勝者を取得する。
   const winner = getGameWinner(sport, data)
   return Functions.encodeUint256(winner)
 }
 
+/**
+ * 試合の結果を取得するメソッド
+ */
 const getGameStatus = (sport, data) => {
   if (sport == SportType.Soccer) {
     return data.fixture.status.short
@@ -81,9 +96,14 @@ const getGameStatus = (sport, data) => {
   }
 }
 
+/**
+ * 試合の勝者を取得するメソッド
+ */
 const getGameWinner = (sport, data) => {
   switch (sport) {
     case SportType.Basketball:
+      return data.scores.home.total > data.scores.away.total ? Result.Home : Result.Away
+    case SportType.Hockey:
     case SportType.Baseball:
       return data.scores.home.total > data.scores.away.total ? Result.Home : Result.Away
     case SportType.Hockey:

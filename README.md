@@ -48,3 +48,84 @@ Code references:
 - [Chainlink Functions Docs](https://docs.chain.link/chainlink-functions)
 - [Chainlink Automation Docs](https://docs.chain.link/chainlink-automation/introduction)
 - [Chainlink CCIP Docs](https://docs.chain.link/ccip)
+
+## 実際に動かした記録
+
+- コントラクト側
+
+   - インストール
+
+      ```bash
+      yarn 
+      ```
+   
+   - コンパイル
+
+      ```bash
+      yarn compile
+      ```
+
+      ```bash
+      Nothing to compile
+      ✨  Done in 2.52s.
+      ```
+
+   - テスト
+
+      ```bash
+      yarn test
+      ```
+
+      ```bash
+         SportsPredictionGame Unit Tests
+         Register
+            ✔ should not be able to register game twice (47ms)
+            ✔ should not be able to register game with start time in the past
+            ✔ should register game
+            ✔ should add game to active games
+            ✔ should emit GameRegistered event
+         Predict
+            ✔ should not be able to predict on not registered game
+            ✔ should not be able to predict on resolved game (55ms)
+            ✔ should not be able to predict game that already started
+            ✔ should revert if Result is not Home or Away
+            ✔ should revert if wager is 0
+            ✔ should revert if wager is less than minimum
+            ✔ should revert if wager is more than maximum
+            ✔ should register prediction
+            ✔ should get past predictions when game is resolved (51ms)
+            ✔ should check if prediction is correct (63ms)
+            ✔ should emit PredictionRegistered event
+         Resolve
+            ✔ should not be able to resolve before game finished
+            when game is resolved
+            ✔ should update game details
+            ✔ should remove game from active games
+            ✔ should not be able to resolve game twice
+            ✔ should emit GameResolved event
+         Claim
+            ✔ should not be able to claim winnings before game is resolved
+            ✔ should not be able to claim winnings if prediction is not correct (74ms)
+            ✔ should not claim winnings twice (71ms)
+            ✔ should claim winnings if prediction is correct (58ms)
+            ✔ should split winnings between results (87ms)
+            ✔ should combine winnings if user has multiple predictions (62ms)
+            ✔ should refund if there is no winner (52ms)
+            ✔ should send request to transfer winnings cross-chain if flag is set (67ms)
+            ✔ should emit Claimed event (53ms)
+         Automation
+            checkUpkeep
+            ✔ should return false if there are no active games to resolve
+            ✔ should return true if there are active games to resolve
+            performUpkeep
+            ✔ should request game result from oracle
+
+
+      33 passing (7s)
+
+      ✨  Done in 15.68s.
+      ```
+   
+   - 
+
+   - 

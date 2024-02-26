@@ -1,0 +1,17 @@
+{
+  "name": "nba-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "getGameData": "ts-node ./src/index.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.20",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

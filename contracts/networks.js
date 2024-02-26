@@ -4,7 +4,8 @@
 // Price feeds addresses: https://docs.chain.link/data-feeds/price-feeds/addresses
 // Chain IDs: https://chainlist.org/?testnets=true
 
-require("@chainlink/env-enc").config()
+// require("@chainlink/env-enc").config()
+require("dotenv").config();
 
 const DEFAULT_VERIFICATION_BLOCK_CONFIRMATIONS = 2
 
@@ -51,7 +52,7 @@ const networks = {
     fundAmount: "1", // 1 LINK
   },
   avalancheFuji: {
-    url: process.env.AVALANCHE_FUJI_RPC_URL || "UNSET",
+    url: "https://api.avax-test.network/ext/bc/C/rpc",
     gasPrice: undefined,
     accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
     verifyApiKey: process.env.SNOWTRACE_API_KEY || "UNSET",
@@ -69,6 +70,25 @@ const networks = {
     weth9: "0x1D308089a2D1Ced3f1Ce36B1FcaF815b07217be3",
     fundAmount: "1", // 1 LINK
   },
+  arbitrumSepolia: {
+    url: 'https://sepolia-rollup.arbitrum.io/rpc',
+    gasPrice: undefined,
+    accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+    verifyApiKey: process.env.ARBITRUMSCAN_API_KEY || "UNSET",
+    chainId: 421614,
+    confirmations: DEFAULT_VERIFICATION_BLOCK_CONFIRMATIONS,
+    nativeCurrencySymbol: "ETH",
+    linkToken: "0xb1D4538B4571d411F07960EF2838Ce337FE1E80E",
+    linkPriceFeed: "0x3ec8593F930EA45ea58c968260e6e9FF53FC934f", // LINK/ETH
+    functionsRouter: "0x65Dcc24F8ff9e51F10DCc7Ed1e4e2A61e6E14bd6",
+    functionsDonId: "fun-arbitrum-sepolia-1",
+    ccipRouter: "0x2a9C5afB0d0e4BAb2BCdaE109EC4b0c4Be15a165",
+    ccipChainSelector: "3478487238524512106",
+    ccipTestToken: "0xb1D4538B4571d411F07960EF2838Ce337FE1E80E",
+    uniswapV3Router: "0x101F443B4d1b059569D643917553c771E1b9663E",
+    weth9: "0xE591bf0A0CF924A0674d7792db046B23CEbF5f34",
+    fundAmount: "1", // 1 LINK
+  }
 }
 
 module.exports = {

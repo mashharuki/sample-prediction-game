@@ -36,7 +36,7 @@ const requestConfig = {
   // Per-node secrets objects assigned to each DON member. When using per-node secrets, nodes can only use secrets which they have been assigned.
   perNodeSecrets: [],
   // ETH wallet key used to sign secrets so they cannot be accessed by a 3rd party
-  walletPrivateKey: process.env["PRIVATE_KEY"],
+  walletPrivateKey: process.env.PRIVATE_KEY,
   // Args (string only array) can be accessed within the source code with `args[index]` (ie: args[0]).
   args: ["2", "142781"], // sportId, gameId
   // Expected type of the returned value

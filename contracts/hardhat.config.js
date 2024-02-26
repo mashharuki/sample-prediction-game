@@ -4,6 +4,7 @@ require("@openzeppelin/hardhat-upgrades")
 require("./tasks")
 require("@chainlink/env-enc").config()
 const { networks } = require("./networks")
+require("dotenv").config();
 
 // Enable gas reporting (optional)
 const REPORT_GAS = process.env.REPORT_GAS?.toLowerCase() === "true" ? true : false
@@ -65,9 +66,10 @@ module.exports = {
   },
   gasReporter: {
     enabled: REPORT_GAS,
+    token: 'ETH',
     currency: "USD",
-    outputFile: "gas-report.txt",
-    noColors: true,
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+    gasPriceApi: 'https://api.etherscan.io/api?module=proxy&action=eth_gasPrice',
   },
   paths: {
     sources: "./contracts",
