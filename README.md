@@ -125,7 +125,47 @@ Code references:
 
       ✨  Done in 15.68s.
       ```
-   
-   - 
 
-   - 
+   - Signerアドレスを取得する
+
+      ```bash
+      npx hardhat accounts
+      ```
+
+      実行結果例
+
+      ```bash
+      secp256k1 unavailable, reverting to browser version
+      0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072
+      ```
+
+   - 残高を取得する
+
+      ```bash
+      npx hardhat balance --account 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072
+      ```
+
+      実行結果例
+
+      ```bash
+      secp256k1 unavailable, reverting to browser version
+      4.4449858237 ETH
+      ```
+   
+   - スクリプトをローカルでのシミュレーションするコマンド
+
+      ```bash
+      npx hardhat functions-simulate
+      ```
+
+      実行結果例
+
+      ```bash
+
+      ```
+
+   - コントラクトをデプロイする
+
+      ```bash
+      npx hardhat deploy-game --subid --destination --verify true
+      ```

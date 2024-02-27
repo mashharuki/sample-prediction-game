@@ -15,7 +15,7 @@ const Result = {
 const sportId = Number(args[0])
 const gameId = args[1]
 
-if (secrets.apiKey == "") {
+if (secrets.apikey == "") {
   throw Error(
     "API_KEY environment variable not set for Sports API. Get a free key from https://dashboard.api-football.com/register"
   )
@@ -47,15 +47,28 @@ const gamesPaths = {
  * スポーツデータをフェッチするメソッド
  */
 const fetchSportData = async (sport, path, params) => {
+  console.log("sport:", sport)
+  console.log("baseUrls[sport]:", baseUrls[sport])
+  console.log("path", path)
+  console.log("params:", params)
+
   // APIをコールする
   const response = await Functions.makeHttpRequest({
+    method: 'GET',
     url: `${baseUrls[sport]}${path}?${params}`,
-    headers: { "x-apisports-key": secrets.apiKey },
+    headers: { 
+      'X-RapidAPI-Key': secrets.apikey,
+      'X-RapidAPI-Host': 'v2.nba.api-sports.io'
+    },
   })
+
+  console.log("response:", response)
+
   if (response.status !== 200) {
     throw new Error(`Status ${response.status}`)
   }
   if (Object.keys(response.data.errors).length > 0) {
+    console.error(JSON.stringify(response.data.errors))
     throw new Error("API error")
   }
   if (response.data.results === 0) {
@@ -70,7 +83,7 @@ const fetchSportData = async (sport, path, params) => {
  */
 const getGameResult = async (sport, gameId) => {
   // fetchSportData メソッドを呼び出す。
-  const data = await fetchSportData(sport, gamesPaths[sport], `id=${gameId}`)
+  const data = await fetchSportData(sport, gamesPaths[sport], `date=${gameId}`)
   // getGameStatus メソッドを呼び出す。
   const status = getGameStatus(sport, data)
 

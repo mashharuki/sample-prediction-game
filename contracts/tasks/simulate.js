@@ -9,13 +9,22 @@ task("functions-simulate", "Executes the JavaScript source code locally")
     types.string
   )
   .setAction(async (taskArgs) => {
+    // 設定ファイルを読み込む
     const requestConfig = require(path.isAbsolute(taskArgs.configpath)
       ? taskArgs.configpath
       : path.join(process.cwd(), taskArgs.configpath))
 
-    const { responseBytesHexstring, errorString, capturedTerminalOutput } = await simulateScript(requestConfig)
+    // スクリプトを実行
+    const { 
+      responseBytesHexstring, 
+      errorString, 
+      capturedTerminalOutput 
+    } = await simulateScript(requestConfig)
+
     console.log(`${capturedTerminalOutput}\n`)
+
     if (responseBytesHexstring) {
+      // スクリプトを実行した結果をデコードする。
       console.log(
         `Response returned by script during local simulation: ${decodeResult(
           responseBytesHexstring,

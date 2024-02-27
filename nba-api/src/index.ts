@@ -28,7 +28,7 @@ async function main() {
   try {
     const response = await axios.request(options);
     const games = response.data.response;
-    // console.log("response:", games);
+    console.log("response:", games);
 
     for(let i = 0; i < games.length; i++) {
       const scores = games[i].scores;
