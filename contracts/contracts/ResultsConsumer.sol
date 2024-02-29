@@ -66,16 +66,24 @@ abstract contract ResultsConsumer is FunctionsClient {
   /// @param sportId The ID of the sport
   /// @param externalId The ID of the game on the external sports API
   /// @return requestId The Chainlink Functions request ID
-  function _requestResult(uint256 sportId, uint256 externalId) internal returns (bytes32 requestId) {
+  function _requestResult(
+    uint256 sportId, 
+    uint256 externalId
+  ) internal returns (bytes32 requestId) {
     // Prepare the arguments for the Chainlink Functions request
     string[] memory args = new string[](2);
+    // get API args
     args[0] = Strings.toString(sportId);
     args[1] = Strings.toString(externalId);
     // Send the Chainlink Functions request
     requestId = _executeRequest(args);
 
     // Store the request and the associated data for the callback
-    pending[requestId] = PendingRequest({sportId: sportId, externalId: externalId});
+    pending[requestId] = PendingRequest({
+      sportId: sportId, 
+      externalId: externalId
+    });
+    
     emit RequestedResult(sportId, externalId, requestId);
   }
 
@@ -106,7 +114,11 @@ abstract contract ResultsConsumer is FunctionsClient {
   /// @param response The response from the Chainlink Functions request
   /// @param err The error from the Chainlink Functions request
   /// @dev This function is called by the oracle
-  function fulfillRequest(bytes32 requestId, bytes memory response, bytes memory err) internal override {
+  function fulfillRequest(
+    bytes32 requestId, 
+    bytes memory response, 
+    bytes memory err
+  ) internal override {
     PendingRequest memory request = pending[requestId];
     // Check if there is a sent request
     if (request.sportId == 0) {

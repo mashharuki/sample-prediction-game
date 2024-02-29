@@ -39,7 +39,7 @@ const requestConfig = {
   walletPrivateKey: process.env.PRIVATE_KEY,
   // Args (string only array) can be accessed within the source code with `args[index]` (ie: args[0]).
   args: ["1", "2023-02-12"], // sportId, gameId
-  //args: ["2", "142781"], // sportId, gameId
+  // args: ["2", "142781"], // sportId, gameId
   // Expected type of the returned value
   expectedReturnType: ReturnType.uint256,
   // Redundant URLs which point to encrypted off-chain secrets

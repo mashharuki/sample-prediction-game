@@ -57,12 +57,12 @@ const fetchSportData = async (sport, path, params) => {
     method: 'GET',
     url: `${baseUrls[sport]}${path}?${params}`,
     headers: { 
-      'X-RapidAPI-Key': secrets.apikey,
+      'X-RapidAPI-Key': secrets.apiKey,
       'X-RapidAPI-Host': 'v2.nba.api-sports.io'
     },
   })
 
-  console.log("response:", response)
+  // console.log("response:", response)
 
   if (response.status !== 200) {
     throw new Error(`Status ${response.status}`)
@@ -87,6 +87,9 @@ const getGameResult = async (sport, gameId) => {
   // getGameStatus メソッドを呼び出す。
   const status = getGameStatus(sport, data)
 
+  console.log("data:", data)
+  console.log("status:", status)
+
   if (status == "POST" || status == "CANC" || status == "INTR" || status == "ABD") {
     return Functions.encodeUint256(Result.None)
   }
@@ -95,6 +98,7 @@ const getGameResult = async (sport, gameId) => {
   }
   // 勝者を取得する。
   const winner = getGameWinner(sport, data)
+  console.log("winner:", winner)
   return Functions.encodeUint256(winner)
 }
 

@@ -161,7 +161,65 @@ Code references:
       実行結果例
 
       ```bash
-
+      sport: 1
+      baseUrls[sport]: https://v1.basketball.api-sports.io
+      path /games
+      params: date=2023-02-12
+      data: {
+      id: 320766,
+      date: "2023-02-12T00:00:00+00:00",
+      time: "00:00",
+      timestamp: 1676160000,
+      timezone: "UTC",
+      stage: null,
+      week: null,
+      status: { long: "Game Finished", short: "FT", timer: null },
+      league: {
+         id: 116,
+         name: "NCAA",
+         type: "League",
+         season: "2022-2023",
+         logo: "https://media.api-sports.io/basketball/leagues/116.png"
+      },
+      country: {
+         id: 5,
+         name: "USA",
+         code: "US",
+         flag: "https://media.api-sports.io/flags/us.svg"
+      },
+      teams: {
+         home: {
+            id: 2111,
+            name: "Santa Clara",
+            logo: "https://media.api-sports.io/basketball/teams/2111.png"
+         },
+         away: {
+            id: 3382,
+            name: "Loyola Marymount",
+            logo: "https://media.api-sports.io/basketball/teams/3382.png"
+         }
+      },
+      scores: {
+         home: {
+            quarter_1: 0,
+            quarter_2: 30,
+            quarter_3: 0,
+            quarter_4: 41,
+            over_time: null,
+            total: 71
+         },
+         away: {
+            quarter_1: 0,
+            quarter_2: 37,
+            quarter_3: 0,
+            quarter_4: 32,
+            over_time: null,
+            total: 69
+         }
+      }
+      }
+      status: FT
+      winner: 1
       ```
 
    - コントラクトをデプロイする

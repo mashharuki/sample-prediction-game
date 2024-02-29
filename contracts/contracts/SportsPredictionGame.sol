@@ -96,7 +96,13 @@ contract SportsPredictionGame is ResultsConsumer, NativeTokenSender, AutomationC
   constructor(
     Config memory config
   )
-    ResultsConsumer(config.oracle, config.donId, config.subscriptionId, config.source, config.secrets)
+    ResultsConsumer(
+      config.oracle, 
+      config.donId, 
+      config.subscriptionId, 
+      config.source, 
+      config.secrets
+    )
     NativeTokenSender(
       config.ccipRouter,
       config.link,
@@ -113,7 +119,10 @@ contract SportsPredictionGame is ResultsConsumer, NativeTokenSender, AutomationC
   /// @param gameId The ID of the game
   /// @param result The predicted result
   /// @dev The game must be registered, not resolved, and not started
-  function predict(uint256 gameId, Result result) public payable {
+  function predict(
+    uint256 gameId, 
+    Result result
+  ) public payable {
     Game memory game = games[gameId];
     uint256 wagerAmount = msg.value;
 
@@ -230,7 +239,11 @@ contract SportsPredictionGame is ResultsConsumer, NativeTokenSender, AutomationC
   /// @param externalId The ID of the game on the external sports API
   /// @param response The result of the game
   /// @dev Called back by the ResultsConsumer contract when the result is received
-  function _processResult(uint256 sportId, uint256 externalId, bytes memory response) internal override {
+  function _processResult(
+    uint256 sportId, 
+    uint256 externalId, 
+    bytes memory response
+  ) internal override {
     uint256 gameId = getGameId(sportId, externalId);
     Result result = Result(uint256(bytes32(response)));
     _resolveGame(gameId, result);
