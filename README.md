@@ -225,5 +225,43 @@ Code references:
    - コントラクトをデプロイする
 
       ```bash
-      npx hardhat deploy-game --subid --destination --verify true
+      npx hardhat deploy-game --subid 2030 --destination avalancheFuji --verify true --network ethereumSepolia
       ```
+
+      実行結果例
+
+      ```bash
+      Deploying SportsPredictionGame contract to ethereumSepolia
+
+      __Compiling Contracts__
+      Nothing to compile
+      Please set the encryption password by running: npx env-enc set-pw
+      If you do not know your password, delete the file /Users/harukikondo/git/sample-prediction-game/contracts/.env.enc and set a new password. (Note: This will cause you to lose all encrypted variables.)
+
+      Creating gist...
+      Gist created https://gist.github.com/mashharuki/335750174b77b388027e597e5d6b5aa3/raw
+
+      SportsPredictionGame contract deployed to 0xeAE354E1b46fFc6E5A989257dF6Ef559be53Bf6F on ethereumSepolia
+
+      Consumer added to Functions subscription 2030
+
+      Deploying NativeTokenReceiver contract to avalancheFuji
+      NativeTokenReceiver contract deployed to 0x33972ee059716514899150aE5D61926c7843ff0a on avalancheFuji
+      Set 0x33972ee059716514899150aE5D61926c7843ff0a as the destination contract receiver
+      Funded game contract with 1 LINK
+
+      Verifying contract...
+      Nothing to compile
+      Successfully submitted source code for contract
+      contracts/SportsPredictionGame.sol:SportsPredictionGame at 0xeAE354E1b46fFc6E5A989257dF6Ef559be53Bf6F
+      for verification on the block explorer. Waiting for verification result...
+
+      Successfully verified contract SportsPredictionGame on Etherscan.
+      https://sepolia.etherscan.io/address/0xeAE354E1b46fFc6E5A989257dF6Ef559be53Bf6F#code
+      Contract verified
+      ```
+
+### 参考文献
+1. [テストトークン(CCIP-BnM)のファウセット](https://docs.chain.link/ccip/test-tokens#mint-tokens-in-the-documentation)
+2. [Etherscan - CCIP-BnMトークン](https://sepolia.etherscan.io/address/0xFd57b4ddBf88a4e07fF4e34C487b99af2Fe82a05)
+3. [LinkTokenを預けた時のトランザクション](https://sepolia.etherscan.io/tx/0x6205222e2ecec2ec65f4a9b0a03d05aad5033757d23089d6bbd466df39732e40)

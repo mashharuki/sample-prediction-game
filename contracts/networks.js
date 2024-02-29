@@ -31,6 +31,12 @@ const networks = {
     linkPriceFeed: "0x42585eD362B3f1BCa95c640FdFf35Ef899212734",
     functionsRouter: "0xb83E47C2bC239B3bf370bc41e1459A34b41238D0",
     functionsDonId: "fun-ethereum-sepolia-1",
+    ccipRouter: "0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59",
+    ccipChainSelector: "16015286601757825753",
+    ccipTestToken: "0xFd57b4ddBf88a4e07fF4e34C487b99af2Fe82a05",
+    uniswapV3Router: "0x3fC91A3afd70395Cd496C647d5a6CC9D4B2b7FAD",
+    weth9: "0x097D90c9d3E0B50Ca60e1ae45F6A81010f9FB534",
+    fundAmount: "1", // 1 LINK
   },
   polygonMumbai: {
     url: process.env.POLYGON_MUMBAI_RPC_URL || "UNSET",
