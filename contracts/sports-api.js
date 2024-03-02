@@ -83,7 +83,7 @@ const fetchSportData = async (sport, path, params) => {
  */
 const getGameResult = async (sport, gameId) => {
   // fetchSportData メソッドを呼び出す。
-  const data = await fetchSportData(sport, gamesPaths[sport], `date=${gameId}`)
+  const data = await fetchSportData(sport, gamesPaths[sport], `id=${gameId}`)
   // getGameStatus メソッドを呼び出す。
   const status = getGameStatus(sport, data)
 

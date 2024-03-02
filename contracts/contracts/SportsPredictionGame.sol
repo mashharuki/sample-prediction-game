@@ -148,7 +148,12 @@ contract SportsPredictionGame is ResultsConsumer, NativeTokenSender, AutomationC
   /// @param externalId The ID of the game on the external sports API
   /// @param timestamp The timestamp of the game start time
   /// @param result The predicted result
-  function registerAndPredict(uint256 sportId, uint256 externalId, uint256 timestamp, Result result) external payable {
+  function registerAndPredict(
+    uint256 sportId, 
+    uint256 externalId, 
+    uint256 timestamp, 
+    Result result
+  ) external payable {
     uint256 gameId = _registerGame(sportId, externalId, timestamp);
     predict(gameId, result);
   }
@@ -202,7 +207,11 @@ contract SportsPredictionGame is ResultsConsumer, NativeTokenSender, AutomationC
   /// @param externalId The ID of the game on the external sports API
   /// @param timestamp The timestamp of the game start time
   /// @return gameId The ID of the game used in the contract
-  function _registerGame(uint256 sportId, uint256 externalId, uint256 timestamp) internal returns (uint256 gameId) {
+  function _registerGame(
+    uint256 sportId, 
+    uint256 externalId, 
+    uint256 timestamp
+  ) internal returns (uint256 gameId) {
     gameId = getGameId(sportId, externalId);
 
     // Check if the game can be registered

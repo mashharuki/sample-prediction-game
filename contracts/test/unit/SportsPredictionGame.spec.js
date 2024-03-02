@@ -423,6 +423,7 @@ async function resolveGame(gameContract, mockOracleContract, gameId, result, del
   await time.increase(delay)
 
   const performData = ethers.utils.hexZeroPad(ethers.utils.hexlify(BigInt(gameId)), 32)
+  console.log("performData:", performData)
   await gameContract.performUpkeep(performData)
 
   const client = gameContract.address

@@ -53,7 +53,9 @@ export default function BetSlipList({ games }: { games: Game[] }) {
       onError: (err) => console.error(err),
       watch: true,
     })
+  console.log("activePredictionsData", activePredictionsData)
   const activePredictions = addIndexToPredictions(activePredictionsData)
+  console.log("activePredictions", activePredictions)
 
   const { data: pastPredictionsData } =
     useSportsPredictionGameGetPastPredictions({

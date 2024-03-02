@@ -5,7 +5,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "getGameData": "ts-node ./src/index.ts"
+    "getGameData": "ts-node ./src/index.ts",
+    "getLeagues": "ts-node ./src/leagues.ts"
   },
   "dependencies": {
     "@types/node": "^20.11.20",

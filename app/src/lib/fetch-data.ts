@@ -44,6 +44,25 @@ export const fetchGames = async (
 const transformGame = (game: any, sport: Sport) => {
   switch (sport) {
     case Sport.Basketball:
+      return {
+        id: game.id,
+        date: new Date(game.date),
+        timestamp: game.timestamp,
+        timezone: game.timezone,
+        status: game.status.short,
+        teams: {
+          home: {
+            name: game.teams.home.name,
+            logo: game.teams.home.logo,
+          },
+          away: {
+            name: game.teams.away.name,
+            logo: game.teams.away.logo,
+          },
+        },
+        scores: transformScore(game.scores, sport),
+        sportId: sport,
+      } as Game
     case Sport.Baseball:
     case Sport.Hockey:
     case Sport.Rugby:
@@ -94,6 +113,10 @@ const transformGame = (game: any, sport: Sport) => {
 const transformScore = (scores: any, sport: Sport) => {
   switch (sport) {
     case Sport.Basketball:
+      return {
+        home: scores.home.total,
+        away: scores.away.total,
+      }
     case Sport.Baseball:
       return {
         home: scores.home.total,
@@ -119,9 +142,11 @@ export const fetchCurrentLeagues = async (sport: Sport) => {
     3600 * 24,
   )
   const allLeagues: LeagueResponse[] = res.response
+  // フィルタリングする。
   const currentLeagues = allLeagues.filter((league: LeagueResponse) =>
     league.seasons.some((season) => season.current === true),
   )
+  
   return currentLeagues.reverse().slice(0, leaguesCountLimit)
 }
 
@@ -181,6 +206,7 @@ const fetchSportData = cache(
     params: URLSearchParams,
     revalidate = 3600,
   ) => {
+    console.log(`API URL: ${baseUrls[sport]}${path}?${params.toString()}` )
     const response = await fetch(
       `${baseUrls[sport]}${path}?${params.toString()}`,
       {
